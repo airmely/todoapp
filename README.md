@@ -14,8 +14,9 @@
    cd todoapp
 
 2. Введите эти команды:
+   ```bash
    docker-compose up
    docker-compose run web python manage.py makemigrations
    docker-compose run web python manage.py migrate
    docker-compose up
-3. Откройте браузер и перейдите по адресу http://localhost:8000 для доступа к приложению.
+4. Откройте браузер и перейдите по адресу http://localhost:8000 для доступа к приложению.
