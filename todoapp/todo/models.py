@@ -6,8 +6,18 @@ class Tasks(models.Model):
     task = models.CharField(max_length=50, verbose_name='Задача')
     description = models.TextField(verbose_name='Описание задачи')
     date_created = models.DateTimeField(auto_now_add=True)
-    status = models.ForeignKey('Status', on_delete=models.PROTECT, verbose_name='Статус', null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', null=False)
+    status = models.ForeignKey(
+        'Status',
+        on_delete=models.PROTECT,
+        verbose_name='Статус',
+        null=False
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Пользователь',
+        null=False
+    )
 
     def __str__(self):
         return self.task
@@ -18,7 +28,17 @@ class Tasks(models.Model):
 
 
 class Status(models.Model):
-    name_status = models.CharField(max_length=55, db_index=True)
+    STATUS_CHOICES = [
+        ('waiting', 'В ожидании'),
+        ('in_progress', 'В процессе'),
+        ('completed', 'Завершена'),
+    ]
+
+    name_status = models.CharField(
+        max_length=55,
+        choices=STATUS_CHOICES,
+        default='waiting',
+        db_index=True)
 
     def __str__(self):
         return self.name_status
