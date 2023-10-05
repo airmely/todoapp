@@ -6,8 +6,8 @@ class Tasks(models.Model):
     task = models.CharField(max_length=50, verbose_name='Задача')
     description = models.TextField(verbose_name='Описание задачи')
     date_created = models.DateTimeField(auto_now_add=True)
-    status = models.ForeignKey('Status', on_delete=models.PROTECT, verbose_name='Статус')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    status = models.ForeignKey('Status', on_delete=models.PROTECT, verbose_name='Статус', null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', null=False)
 
     def __str__(self):
         return self.task
