@@ -8,21 +8,24 @@
             <div class="card bg-dark text-white" style="border-radius: 1rem;">
                 <div class="card-body p-5 text-center">
                     <div class="mb-md-5 mt-md-4 pb-5">
-                        {% for t in task %}
-                        <h3> {{ t.task }} </h3>
-                        <ul>{{ t.description }}</ul>
-                        <div class="d-flex justify-content-between">
-                            <p class="btn btn-success">{{ t.status }}</p>
-                            <a href="{% url 'update_task' t.id %}" class="btn btn-primary">Редактировать задачу</a>
-                            <a href="{% url 'delete_task' t.id %}" class="btn btn-primary">Удалить задачу</a>
-
-                        </div>
-                        <hr>
-                        {% endfor %}
+                        {% if task %}
+                            {% for t in task %}
+                            <h3>{{ t.task }}</h3>
+                            <ul>{{ t.description }}</ul>
+                            <div class="d-flex justify-content-between">
+                                <p class="btn btn-success">{{ t.status }}</p>
+                                <a href="{% url 'update_task' t.id %}" class="btn btn-primary">Редактировать задачу</a>
+                                <a href="{% url 'delete_task' t.id %}" class="btn btn-primary">Удалить задачу</a>
+                            </div>
+                            <hr>
+                            {% endfor %}
+                        {% else %}
+                            <p>Пока нет задач.</p>
+                            <h1> ПРИДУМАЙ ЧТО-НИБУДЬ !</h1>
+                        {% endif %}
                         <div>
-                            <body>
                             <a href="{% url 'create_task' %}" class="btn btn-danger">Создать задачу</a>
-                            </body>
+                        </div>
                     </div>
                 </div>
             </div>
